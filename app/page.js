@@ -5,20 +5,17 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import Link from "next/link";
 
-<Link href="/register">Register</Link>
-
-
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [submitting, setSubmitting] = useState(false); // Loading state
+  const [submitting, setSubmitting] = useState(false);
   const router = useRouter();
 
   const API_URL = "https://flask-backend-zqvu.onrender.com";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitting(true); // Start loading
+    setSubmitting(true);
     try {
       const res = await axios.post(`${API_URL}/api/auth/login`, { email, password });
       localStorage.setItem("token", res.data.token);
@@ -26,7 +23,7 @@ export default function LoginPage() {
     } catch (err) {
       alert("Invalid credentials");
     } finally {
-      setSubmitting(false); // Stop loading
+      setSubmitting(false);
     }
   };
 
@@ -53,6 +50,7 @@ export default function LoginPage() {
           required
         />
         <button
+          type="submit"
           className={`bg-blue-500 text-white px-4 py-2 rounded w-full hover:bg-blue-600 transition ${
             submitting ? "opacity-50 cursor-not-allowed" : ""
           }`}
@@ -61,8 +59,8 @@ export default function LoginPage() {
           {submitting ? "Logging in..." : "Login"}
         </button>
         <p className="text-sm">
-          Dont have an account?{" "}
-          <Link href="/register" className="text-blue-500">
+          Don't have an account?{" "}
+          <Link href="/register" className="text-blue-500 hover:underline">
             Register
           </Link>
         </p>
