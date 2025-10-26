@@ -59,7 +59,7 @@ export default function LoginPage() {
           {submitting ? "Logging in..." : "Login"}
         </button>
         <p className="text-sm">
-          Don't have an account?{" "}
+          Don't have an account?
           <Link href="/register" className="text-blue-500 hover:underline">
             Register
           </Link>
