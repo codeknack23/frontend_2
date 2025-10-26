@@ -5,9 +5,6 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import Link from "next/link";
 
-
-
-
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,7 +17,10 @@ export default function LoginPage() {
     e.preventDefault();
     setSubmitting(true); // Start loading
     try {
-      const res = await axios.post(`${API_URL}/api/auth/login`, { email, password });
+      const res = await axios.post(`${API_URL}/api/auth/login`, {
+        email,
+        password,
+      });
       localStorage.setItem("token", res.data.token);
       router.push("/leads");
     } catch (err) {
